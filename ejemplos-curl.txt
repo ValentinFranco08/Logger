@@ -1,0 +1,167 @@
+# ============================================
+# EJEMPLOS DE CURL - REST API
+# ============================================
+# Copiar y pegar los comandos en la terminal
+# Asegúrate de que el servidor esté corriendo
+
+# ============================================
+# ENDPOINTS BÁSICOS
+# ============================================
+
+# 1. GET /status/200 - Success
+curl http://localhost:3000/status/200
+
+# 2. GET /status/500 - Error interno
+curl http://localhost:3000/status/500
+
+# 3. GET /status/429 - Too many requests
+curl http://localhost:3000/status/429
+
+# ============================================
+# GUARDAR REGISTROS (POST)
+# ============================================
+
+# 4. Guardar un registro - Usuario 1
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Juan Pérez", "email": "juan@example.com", "edad": 30}'
+
+# 5. Guardar un registro - Usuario 2
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "María García", "email": "maria@example.com", "edad": 25}'
+
+# 6. Guardar un registro - Usuario 3
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Carlos López", "email": "carlos@example.com", "edad": 35}'
+
+# 7. Guardar un registro - Producto
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{"producto": "Laptop", "precio": 1200, "stock": 5}'
+
+# ============================================
+# RECUPERAR REGISTROS (GET)
+# ============================================
+
+# 8. Obtener todos los registros
+curl http://localhost:3000/status/save
+
+# Con formato legible (requiere jq):
+curl http://localhost:3000/status/save | jq '.'
+
+# ============================================
+# ELIMINAR REGISTROS (DELETE)
+# ============================================
+
+# 9. Eliminar registro con ID 1
+curl -X DELETE http://localhost:3000/status/save/1
+
+# 10. Eliminar registro con ID 2
+curl -X DELETE http://localhost:3000/status/save/2
+
+# 11. Eliminar registro con ID 999 (no existe)
+curl -X DELETE http://localhost:3000/status/save/999
+
+# ============================================
+# LIMPIAR BASE DE DATOS
+# ============================================
+
+# 12. Limpiar toda la base de datos
+curl -X POST http://localhost:3000/status/clear
+
+# ============================================
+# PRUEBAS DE ERROR
+# ============================================
+
+# 13. Error 400 - Body vacío
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{}'
+
+# 14. Error 404 - Ruta no encontrada
+curl http://localhost:3000/ruta-que-no-existe
+
+# 15. Error 400 - Content-Type faltante
+curl -X POST http://localhost:3000/status/save \
+  -d '{"nombre": "Test"}'
+
+# ============================================
+# EJEMPLOS AVANZADOS (DIFERENTES TIPOS DE DATOS)
+# ============================================
+
+# 16. Guardar datos anidados
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{
+    "usuario": "admin",
+    "permisos": ["read", "write", "delete"],
+    "config": {
+      "tema": "oscuro",
+      "idioma": "es",
+      "activo": true
+    }
+  }'
+
+# 17. Guardar datos con números
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": 123,
+    "valor": 99.99,
+    "cantidad": 50,
+    "activo": true,
+    "descripcion": null
+  }'
+
+# 18. Guardar datos con caracteres especiales
+curl -X POST http://localhost:3000/status/save \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "José María",
+    "ciudad": "São Paulo",
+    "descripcion": "Datos con caracteres especiales: ñ, é, á, ü"
+  }'
+
+# ============================================
+# PRUEBAS DE ESTRÉS (50 registros)
+# ============================================
+
+# 19. Guardar 50 registros (en un script)
+for i in {1..50}; do
+  curl -X POST http://localhost:3000/status/save \
+    -H "Content-Type: application/json" \
+    -d "{\"id\": $i, \"nombre\": \"Usuario $i\", \"timestamp\": \"$(date)\"}"
+  echo ""
+done
+
+# ============================================
+# COMANDOS ÚTILES
+# ============================================
+
+# Ver respuesta con headers
+curl -i http://localhost:3000/status/200
+
+# Ver solo headers
+curl -I http://localhost:3000/status/200
+
+# Ver duración de la request
+curl -w "\nTiempo total: %{time_total}s\n" http://localhost:3000/status/200
+
+# Guardar respuesta en archivo
+curl http://localhost:3000/status/save > respuesta.json
+
+# Usar variable de entorno
+URL="http://localhost:3000"
+curl $URL/status/200
+
+# ============================================
+# NOTAS
+# ============================================
+
+# - POST /status/save tiene 50% de probabilidad de retornar error 500
+# - Todos los endpoints tienen manejo de excepciones
+# - Los logs se mostrarán en la consola del servidor
+# - Base de datos es simulada (array en memoria)
+# - Los datos se pierden cuando reinicia el servidor

@@ -1,0 +1,17 @@
+{
+  "name": "rest-api-status",
+  "version": "1.0.0",
+  "description": "API REST con endpoints de status y logging con Winston",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["REST", "API", "Express", "Winston"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "winston": "^3.11.0"
+  }
+}

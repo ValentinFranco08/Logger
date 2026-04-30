@@ -1,0 +1,157 @@
+# ============================================
+# DEPENDENCIES
+# ============================================
+node_modules/
+npm-debug.log
+npm-debug.log.*
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+lerna-debug.log
+
+# ============================================
+# ENVIRONMENT VARIABLES
+# ============================================
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================
+# IDE / EDITOR
+# ============================================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+.vscode/launch.json
+.vscode/settings.json
+.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+.idea/modules.xml
+.idea/misc.xml
+.idea/workspace.xml
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+.atomrc
+
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================
+# OS FILES
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+
+# ============================================
+# LOGS
+# ============================================
+logs/
+*.log
+log.txt
+access.log
+error.log
+
+# ============================================
+# RUNTIME DATA
+# ============================================
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ============================================
+# BUILD & DIST
+# ============================================
+dist/
+build/
+out/
+.next/
+.nuxt/
+*.tsbuildinfo
+
+# ============================================
+# TESTING
+# ============================================
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+.mocha/
+
+# ============================================
+# MISC
+# ============================================
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Cache files
+.cache/
+.eslintcache
+.stylelintcache
+
+# Archivos de bloqueo
+*.lock
+yarn.lock
+package-lock.json (opcional - descomentar si trabaja en equipo)
+
+# ============================================
+# DATABASE
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+database.json
+
+# ============================================
+# CREDENTIALS & SECRETS
+# ============================================
+.aws/
+.ssh/
+secrets/
+credentials.json
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+# Para nuestra aplicación
+database_simulada.json
+uploads/
+tmp_uploads/
